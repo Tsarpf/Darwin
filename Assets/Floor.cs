@@ -129,9 +129,9 @@ namespace Assets
 
             block.AddComponent("MeshFilter");
             block.AddComponent("MeshRenderer");
-            block.AddComponent("MeshCollider");
+            //block.AddComponent("MeshCollider");
             //block.AddComponent("PolygonCollider2D");
-            //block.AddComponent("EdgeCollider2D");
+            block.AddComponent("EdgeCollider2D");
 
             block.renderer.material.mainTextureScale = new Vector2(0.5f, 1f);
 			block.renderer.material.mainTexture = texture;
@@ -140,8 +140,18 @@ namespace Assets
             meshFilter.mesh = mesh;
             meshFilter.mesh.RecalculateNormals();
 
-            var meshCollider = block.GetComponent<MeshCollider>();
-            meshCollider.sharedMesh = mesh;
+            //var meshCollider = block.GetComponent<MeshCollider>();
+            //meshCollider.sharedMesh = mesh;
+            var edgeCollider = block.GetComponent<EdgeCollider2D>();
+
+            Vector2[] verts = new Vector2[meshData.vertices.Length];
+            for(int i = 0; i < meshData.vertices.Length; i++)
+            {
+                verts[i] = new Vector2(meshData.vertices[i].x, meshData.vertices[i].y); 
+            }
+
+            edgeCollider.points = verts;
+
 			//meshCollider.collider.bounds.SetMinMax(new Vector3(50, 50, 50), new Vector3(100, 100, 100));
 
             //var collider = block.GetComponent<PolygonCollider2D>();
@@ -168,10 +178,10 @@ namespace Assets
             for (int i = 0; i < height.Length; i++)
             {
                 float value = (float)perlin.GetValue(x + 0.1f, 0, 0);
-                value += 0.5f;
+                value += 0.3f;
                 value = Mathf.Clamp(value, 0.1f, 1);
                 height[i] = new Vector3(x, value, 0);
-                x += 2.0f / multiplier;
+                x += 1.0f / (multiplier + 500);
             }
 
             return height;

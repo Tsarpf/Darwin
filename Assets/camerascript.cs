@@ -8,7 +8,7 @@ public class camerascript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		Quaternion q = transform.rotation;
+		q = transform.rotation;
 		origPos = transform.position;
 	}
 	
