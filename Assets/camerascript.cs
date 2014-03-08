@@ -8,6 +8,8 @@ public class camerascript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        //Debug.Log(camera.orthographicSize);
+        camera.orthographicSize = 10;
 		q = transform.rotation;
 		origPos = transform.position;
 	}

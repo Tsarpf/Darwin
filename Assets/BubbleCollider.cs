@@ -11,6 +11,16 @@ public class BubbleCollider : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		Destroy(gameObject);
+
+        //BroadcastMessage("ebin", parametrit); //Tämä tehdään täällä
+
+        /*
+        void onEbin(parametrit)
+        {
+            //sijaitsen pisteenlaskuluokassa jou.
+        }
+        */
+
         //Todo: Add points or whatever.
 	}
 

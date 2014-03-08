@@ -37,8 +37,7 @@ namespace Assets
 			createGroundBubbles(floorBubblePositions.ToArray(), bubbleHeightFromGround, textures["bubbleTexture"]);
 
             List<Vector3> platformPositions = generatePlatformPositions(scaleMultiplier);
-
-            int platformMinimumHeight = 1;
+            int platformMinimumHeight = 3;
             createPlatforms(platformPositions.ToArray(), platformMinimumHeight, textures["platformTexture"]);
 		}
 
@@ -53,19 +52,18 @@ namespace Assets
 
             List<Vector3> platformPositions = new List<Vector3>();
 
-            float platformStartChance = 0.2f; //should "chance" be "likelihood"?
-            float platformContinueChance = 0.8f;
+            float platformStartChance = 0.05f; //should "chance" be "likelihood"?
+            float platformContinueChance = 0.50f;
             bool platformOnGoing = false;
 
             System.Random random = new System.Random();
 
-            for (int i = 0; i < positions.Length; i += 5)
+            for (int i = 0; i < positions.Length; i += 4)
             {
                 float rand = (float)random.Next(101) / 100;
-                //Debug.Log(rand);
                 if (!platformOnGoing)
                 {
-                    if (rand > platformStartChance)
+                    if (rand < platformStartChance)
                     {
                         platformPositions.Add(positions[i]);
                         platformOnGoing = true;
@@ -73,7 +71,7 @@ namespace Assets
                 }
                 else if(platformOnGoing)
                 {
-                    if (rand > platformContinueChance)
+                    if (rand < platformContinueChance)
                     {
                         platformPositions.Add(positions[i]);
                     }
@@ -123,7 +121,7 @@ namespace Assets
             {
                 float height = random.Next(101) / 40; //in range of 0 to 5
                 Vector3 pos = new Vector3(positions[i].x, positions[i].y + minimumHeight + height, positions[i].z);
-                //Debug.Log(pos);
+
                 platform = new Platform(pos, tex);
                 platforms.Add(platform);
             }

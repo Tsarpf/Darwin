@@ -18,9 +18,12 @@ namespace Assets
             this.position = position;
             this.texture = texture;
 
-            platform = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            //platform = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            
+            GameObject prefab = (GameObject)Resources.Load("PlatformPrefab");
+            platform = (GameObject)GameObject.Instantiate(prefab);
 
-            var collider = platform.GetComponent<CapsuleCollider>();
+            //var collider = platform.GetComponent<CapsuleCollider>();
             //collider.isTrigger = true;
             platform.AddComponent("PlatformCollider");
 
