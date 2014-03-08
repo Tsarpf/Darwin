@@ -22,6 +22,8 @@ namespace Assets
             GameObject prefab = (GameObject)Resources.Load("BubblePrefab");
             bubble = (GameObject)GameObject.Instantiate(prefab);
 
+            bubble.name = "Bubble";
+
             bubble.renderer.material.shader = Shader.Find("Transparent/Cutout/Diffuse");
 
             bubble.transform.position = position;

@@ -119,6 +119,8 @@ namespace Assets
 				                                     block.transform.localScale.y * scaleMultiplier.y,
 													 block.transform.localScale.z * scaleMultiplier.z);
 
+            block.name = "Terrain";
+
             Mesh mesh = new Mesh();
 
             //Debug.Log(meshData.vertices.Length + " " + meshData.UVs.Count);

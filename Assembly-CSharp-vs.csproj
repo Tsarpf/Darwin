@@ -49,6 +49,7 @@
      <Compile Include="Assets\Bubble.cs" />
      <Compile Include="Assets\BubbleCollider.cs" />
      <Compile Include="Assets\Floor.cs" />
+     <Compile Include="Assets\GUIStuff.cs" />
      <Compile Include="Assets\Level.cs" />
      <Compile Include="Assets\LibNoiseDotNet\LibNoise\Billow.cs" />
      <Compile Include="Assets\LibNoiseDotNet\LibNoise\Checkerboard.cs" />
@@ -96,6 +97,7 @@
      <Compile Include="Assets\LibNoiseDotNet\LibNoise\Voronoi.cs" />
      <Compile Include="Assets\Platform.cs" />
      <Compile Include="Assets\PlatformCollider.cs" />
+     <Compile Include="Assets\PlayerPoints.cs" />
      <Compile Include="Assets\TEst.cs" />
      <Compile Include="Assets\camerascript.cs" />
      <Compile Include="Assets\movescript.cs" />

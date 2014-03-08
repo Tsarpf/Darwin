@@ -58,7 +58,7 @@ namespace Assets
 
             System.Random random = new System.Random();
 
-            for (int i = 0; i < positions.Length; i += 4)
+            for (int i = 0; i < positions.Length; i += 7)
             {
                 float rand = (float)random.Next(101) / 100;
                 if (!platformOnGoing)
@@ -119,7 +119,7 @@ namespace Assets
             System.Random random = new System.Random();
             for(int i = 0; i < positions.Length; i++)
             {
-                float height = random.Next(101) / 40; //in range of 0 to 5
+                float height = random.Next(101) / 80; //in range of 0 to 5
                 Vector3 pos = new Vector3(positions[i].x, positions[i].y + minimumHeight + height, positions[i].z);
 
                 platform = new Platform(pos, tex);

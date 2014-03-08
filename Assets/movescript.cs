@@ -15,12 +15,6 @@ public class movescript : MonoBehaviour {
 	void Update () {
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
 
-        float maxVelocity = 5f;
-
-        if (rigidbody2D.velocity.x < maxVelocity)
-        {
-            transform.rigidbody2D.AddForce(new Vector2(10, 0));
-        }
 
 		if (Input.GetKey(KeyCode.RightArrow))
 		{
@@ -47,14 +41,21 @@ public class movescript : MonoBehaviour {
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log(collision.contacts[0].normal);
+        //Debug.Log(collision.contacts[0].normal);
+        float maxVelocity = 5f;
+
+        if (rigidbody2D.velocity.x < maxVelocity)
+        {
+            //Debug.Log("adding powah");
+            transform.rigidbody2D.AddForce(new Vector2(15, 0));
+        }
 
 		if (Input.GetKeyDown(KeyCode.UpArrow))
 		{
             bool anyJumpable = false;
             foreach (ContactPoint2D contact in collision.contacts)
             {
-                if (contact.normal.x > -1)
+                if (contact.normal.x > -0.91)
                 {
                     anyJumpable = true;
                 }
