@@ -18,15 +18,13 @@ namespace Assets
 			this.position = position;
 			this.texture = texture;
 
-            bubble = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
 
-			var collider = bubble.GetComponent<CapsuleCollider>();
-			collider.isTrigger = true;
-			bubble.AddComponent("BubbleCollider");
+            GameObject prefab = (GameObject)Resources.Load("BubblePrefab");
+            bubble = (GameObject)GameObject.Instantiate(prefab);
+
+            bubble.renderer.material.shader = Shader.Find("Transparent/Cutout/Diffuse");
 
             bubble.transform.position = position;
-			//bubble.transform.rotation = new Quaternion(90, bubble.transform.rotation.y, bubble.transform.rotation.z, bubble.transform.rotation.w);
-			bubble.transform.Rotate(new Vector3(90, 0, 0));
 
 			//bubble.renderer.material.mainTextureScale = new Vector2(0.5f, 1f);
 			bubble.renderer.material.mainTexture = texture;

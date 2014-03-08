@@ -20,13 +20,13 @@ namespace Assets
 			bubbles = new List<Bubble>();
             platforms = new List<Platform>();
 
-			Vector3 scaleMultiplier = new Vector3(250, 25, 1);
+			Vector3 scaleMultiplier = new Vector3(7500, 100, 1);
 			floor = new Floor(mapLength, textures["floorTexture"], scaleMultiplier);
 
 			Vector3[] upperVertices = floor.getUpperVertices();
 			List<Vector3> floorBubblePositions = new List<Vector3>();
 
-			for (int i = 0; i < upperVertices.Length; i+=3)
+			for (int i = 0; i < upperVertices.Length; i+=5)
 			{
 				Vector3 pos = new Vector3(upperVertices[i].x * scaleMultiplier.x, upperVertices[i].y * scaleMultiplier.y, upperVertices[i].z * scaleMultiplier.z);
 				//floorBubblePositions.Add(upperVertices[i]);

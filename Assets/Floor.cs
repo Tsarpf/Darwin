@@ -144,10 +144,16 @@ namespace Assets
             //meshCollider.sharedMesh = mesh;
             var edgeCollider = block.GetComponent<EdgeCollider2D>();
 
-            Vector2[] verts = new Vector2[meshData.vertices.Length];
-            for(int i = 0; i < meshData.vertices.Length; i++)
+            //Vector2[] verts = new Vector2[meshData.vertices.Length];
+            //for(int i = 0; i < meshData.vertices.Length; i++)
+            //{
+            //    verts[i] = new Vector2(meshData.vertices[i].x, meshData.vertices[i].y); 
+            //}
+
+            Vector2[] verts = new Vector2[upperVertices.Length];
+            for (int i = 0; i < upperVertices.Length; i++)
             {
-                verts[i] = new Vector2(meshData.vertices[i].x, meshData.vertices[i].y); 
+                verts[i] = new Vector2(upperVertices[i].x, upperVertices[i].y);
             }
 
             edgeCollider.points = verts;
@@ -177,11 +183,12 @@ namespace Assets
 
             for (int i = 0; i < height.Length; i++)
             {
-                float value = (float)perlin.GetValue(x + 0.1f, 0, 0);
+                float value = (float)perlin.GetValue(x + 0.005f * i, 0, 0);
+                value += 1;
+                value = value / 2;
                 value += 0.3f;
-                value = Mathf.Clamp(value, 0.1f, 1);
                 height[i] = new Vector3(x, value, 0);
-                x += 1.0f / (multiplier + 500);
+                x += 1.5f / (multiplier + 500);
             }
 
             return height;

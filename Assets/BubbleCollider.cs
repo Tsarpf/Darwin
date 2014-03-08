@@ -8,7 +8,7 @@ public class BubbleCollider : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter(Collider other)
+	void OnTriggerEnter2D(Collider2D other)
 	{
 		Destroy(gameObject);
         //Todo: Add points or whatever.
