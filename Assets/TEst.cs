@@ -12,7 +12,8 @@ public class TEst : MonoBehaviour {
 	{
 
 		Dictionary<string, string> textures = new Dictionary<string, string>();
-		textures["floorTexture"] = "WaterPlain0017_9_S";
+        //textures["floorTexture"] = "WaterPlain0017_9_S";
+        textures["floorTexture"] = "Grass0133_9_S";
 		textures["bubbleTexture"] = "Fruit0034_L";
         textures["platformTexture"] = "OrnamentBorder0228_2_S";
 

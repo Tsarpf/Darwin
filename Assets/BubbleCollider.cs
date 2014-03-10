@@ -10,7 +10,9 @@ public class BubbleCollider : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		Destroy(gameObject);
+        //Destroy(gameObject);
+
+        Assets.Bubble.Pop(gameObject);
 
         //BroadcastMessage("ebin", parametrit); //Tämä tehdään täällä
 

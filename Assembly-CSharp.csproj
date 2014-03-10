@@ -101,6 +101,7 @@
      <Compile Include="Assets\TEst.cs" />
      <Compile Include="Assets\camerascript.cs" />
      <Compile Include="Assets\movescript.cs" />
+     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

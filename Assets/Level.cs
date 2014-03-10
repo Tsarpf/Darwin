@@ -11,6 +11,7 @@ namespace Assets
 	{
 		Floor floor;
 		Dictionary<string, Texture2D> textures;
+        Color32 bubbleAverageColor;
 		List<Bubble> bubbles;
         List<Platform> platforms;
 
@@ -34,13 +35,32 @@ namespace Assets
 			}
 
 			int bubbleHeightFromGround = 1;
-			createGroundBubbles(floorBubblePositions.ToArray(), bubbleHeightFromGround, textures["bubbleTexture"]);
+            bubbleAverageColor = averageColorFromTexture(textures["bubbleTexture"]);
+            createGroundBubbles(floorBubblePositions.ToArray(), bubbleHeightFromGround, textures["bubbleTexture"]);
 
             List<Vector3> platformPositions = generatePlatformPositions(scaleMultiplier);
             int platformMinimumHeight = 3;
             createPlatforms(platformPositions.ToArray(), platformMinimumHeight, textures["platformTexture"]);
 		}
 
+        private Color32 averageColorFromTexture(Texture2D tex)
+        {
+            Color32[] texColors = tex.GetPixels32();
+            int total = texColors.Length;
+            float r = 0;
+
+            float g = 0;
+
+            float b = 0;
+            for (int i = 0; i < total; i++)
+            {
+                r += texColors[i].r;
+                g += texColors[i].g;
+                b += texColors[i].b;
+            }
+
+            return new Color32((byte)(r / total), (byte)(g / total), (byte)(b / total), 0);
+        }
         private List<Vector3> generatePlatformPositions(Vector3 scaleMultiplier)
         {
             Vector3[] positionsUnTranslated = floor.getUpperVertices();
@@ -105,7 +125,7 @@ namespace Assets
             {
                 Vector3 pos = new Vector3(positions[i].x, positions[i].y + height, positions[i].z);
 				//Debug.Log(pos);
-                bubble = new Bubble(pos, tex);
+                bubble = new Bubble(pos, tex, bubbleAverageColor);
 				bubbles.Add(bubble);
 				//createBubble(positions[i], height);
 
