@@ -23,6 +23,8 @@ namespace Assets
             GameObject prefab = (GameObject)Resources.Load("PlatformPrefab");
             platform = (GameObject)GameObject.Instantiate(prefab);
 
+            platform.name = "Platform";
+
             //var collider = platform.GetComponent<CapsuleCollider>();
             //collider.isTrigger = true;
             platform.AddComponent("PlatformCollider");

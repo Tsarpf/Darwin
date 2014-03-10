@@ -17,7 +17,7 @@ public class camerascript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         var playerpos = GameObject.FindGameObjectWithTag("Player").transform.position;
-		transform.position = new Vector3(playerpos.x, playerpos.y, origPos.z);
+		transform.position = new Vector3(playerpos.x + 10, playerpos.y, origPos.z);
 		transform.rotation = q;
 	}
 }

@@ -6,6 +6,13 @@ public class movescript : MonoBehaviour {
 	// Use this for initialization
     Quaternion q;
     Vector3 eulerAngles;
+
+    bool playerOnGround = false;
+    bool playerJumping = false;
+    float jumpStartTime = 0;
+    float maxJumpTime = 5f;
+    float jumpSpeed = 5f;
+
 	void Start () {
         q = transform.rotation;
         eulerAngles = transform.eulerAngles;
@@ -15,6 +22,30 @@ public class movescript : MonoBehaviour {
 	void Update () {
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
 
+
+        if (playerJumping)
+        {
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                float currentTime = Time.time;
+                if (currentTime < jumpStartTime + maxJumpTime)
+                {
+                    rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpSpeed);
+                }
+                else
+                {
+                    playerJumping = false;
+                }
+            }
+        }
+
+        if (Input.GetKey(KeyCode.UpArrow) && playerOnGround)
+        {
+            playerJumping = true;
+            jumpStartTime = Time.time;
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpSpeed);
+            playerOnGround = false;
+        }
 
 		if (Input.GetKey(KeyCode.RightArrow))
 		{
@@ -30,13 +61,34 @@ public class movescript : MonoBehaviour {
 		}
 	}
 
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Terrain" || collision.gameObject.name == "Platform")
+        {
+            playerOnGround = false;
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-		if (Input.GetKeyDown(KeyCode.UpArrow))
-		{
-            //rigidbody2D.AddForce(new Vector2(0, 250));
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 10f);
-		}
+        if (collision.gameObject.name == "Terrain" || collision.gameObject.name == "Platform")
+        {
+            bool anyJumpable = false;
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                if (contact.normal.x > -0.91)
+                {
+                    anyJumpable = true;
+                }
+            }
+           if(anyJumpable) playerOnGround = true;
+        }
+        //if (Input.GetKeyDown(KeyCode.UpArrow))
+        //if (Input.GetKey(KeyCode.UpArrow))
+        //{
+        //    //rigidbody2D.AddForce(new Vector2(0, 250));
+        //    rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 10f);
+        //}
     }
 
     void OnCollisionStay2D(Collision2D collision)
@@ -50,7 +102,9 @@ public class movescript : MonoBehaviour {
             transform.rigidbody2D.AddForce(new Vector2(15, 0));
         }
 
-		if (Input.GetKeyDown(KeyCode.UpArrow))
+        /*
+        //if (Input.GetKeyDown(KeyCode.UpArrow))
+		if (Input.GetKey(KeyCode.UpArrow))
 		{
             bool anyJumpable = false;
             foreach (ContactPoint2D contact in collision.contacts)
@@ -64,6 +118,7 @@ public class movescript : MonoBehaviour {
             if(anyJumpable) rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 10f);
 
 		}
+        */
 
         //foreach (ContactPoint2D contact in collision.contacts)
         //{
