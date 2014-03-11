@@ -15,6 +15,7 @@ public class PlayerStats : MonoBehaviour {
     float streakLastBubbleTime;
 
     float streakMaxInterval = 1;
+
     
 	void Start () {
         bubblePoints = 0;
@@ -50,6 +51,7 @@ public class PlayerStats : MonoBehaviour {
 
     private void poppedBubble()
     {
+		int points = 1;
 
         if (streaking)
         {
@@ -57,17 +59,28 @@ public class PlayerStats : MonoBehaviour {
         }
         else
         {
-            bubblePoints++;
             streaking = true;
             streakLength = 1;
         }
 
-		if (streakLength >= 5)
+		if (streakLength >= 5 && streakLength < 10)
 		{
-			//moar points
-			bubblePoints += 2;
+			//double points
+			points++;
+		}
+		else if (streakLength >= 10 && streakLength < 20)
+		{
+            //triple
+			points += 2;
+		}
+		else if (streakLength >= 20)
+		{
+            //quadruple
+			points += 3;
 		}
 
+
+        //Todo: add powerups/speedups/etc here. ie: make changes to the player speed stuff
         if (bubblePoints >= 50)
         {
 
@@ -85,7 +98,7 @@ public class PlayerStats : MonoBehaviour {
 
         }
 
-
+		bubblePoints += points;
         streakLastBubbleTime = Time.time;
     }
 

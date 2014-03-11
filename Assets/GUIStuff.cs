@@ -17,6 +17,7 @@ public class GUIStuff : MonoBehaviour {
 		int streakLength = stats.getStreakLength();
 
         GUI.Box(new Rect(10, 10, 100, 60), "Points");
+
         GUI.Box(new Rect(20, 40, 80, 20), bubblePoints.ToString());
 
 		GUI.Box(new Rect(10, 75, 100, 60), "Streak");
