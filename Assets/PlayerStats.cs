@@ -25,6 +25,8 @@ public class PlayerStats : MonoBehaviour {
         streaking = false;
         streakLength = 0;
         streakLastBubbleTime = 0;
+		playerSpeedForce = 10f;
+   		playerSpeed = 3f;
 	}
 
 	void Update () {
@@ -80,26 +82,37 @@ public class PlayerStats : MonoBehaviour {
 			points += 3;
 		}
 
+		bubblePoints += points;
 
         //Todo: add powerups/speedups/etc here. ie: make changes to the player speed stuff
-        if (bubblePoints >= 50)
-        {
+		if (bubblePoints >= 100)
+		{
+			playerSpeed = 20f;
+			playerSpeedForce = 45f;
+		}
+		else if (bubblePoints >= 50)
+		{
+			playerSpeed = 15f;
+			playerSpeedForce = 25;
+			jumpSpeed = 10f;
+		}
+		else if (bubblePoints >= 25)
+		{
+			playerSpeed = 10f;
+			playerSpeedForce = 20f;
+			jumpSpeed = 8f;
+		}
+		else if (bubblePoints >= 10)
+		{
+			playerSpeedForce = 15f;
+			playerSpeed = 5f;
+		}
+		else if (bubblePoints >= 3)
+		{
+			playerSpeedForce = 12.5f;
+			playerSpeed = 4f;
+		}
 
-        }
-        else if (bubblePoints >= 25)
-        {
-
-        }
-        else if (bubblePoints >= 10)
-        {
-
-        }
-        else if (bubblePoints >= 3)
-        {
-
-        }
-
-		bubblePoints += points;
         streakLastBubbleTime = Time.time;
     }
 
