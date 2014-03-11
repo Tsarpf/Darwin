@@ -39,7 +39,7 @@ namespace Assets
             createGroundBubbles(floorBubblePositions.ToArray(), bubbleHeightFromGround, textures["bubbleTexture"]);
 
             List<Vector3> platformPositions = generatePlatformPositions(scaleMultiplier);
-            int platformMinimumHeight = 3;
+            float platformMinimumHeight = 2.5f;
             createPlatforms(platformPositions.ToArray(), platformMinimumHeight, textures["platformTexture"]);
 		}
 
@@ -67,18 +67,18 @@ namespace Assets
             Vector3[] positions = new Vector3[positionsUnTranslated.Length];
             for (int i = 0; i < positions.Length; i++)
             {
-                positions[i] = new Vector3(positionsUnTranslated[i].x * scaleMultiplier.x, positionsUnTranslated[i].y * scaleMultiplier.y, positionsUnTranslated[i].z * scaleMultiplier.z);
+                positions[i] = new Vector3(positionsUnTranslated[i].x * scaleMultiplier.x - 2   , positionsUnTranslated[i].y * scaleMultiplier.y, positionsUnTranslated[i].z * scaleMultiplier.z);
             }
 
             List<Vector3> platformPositions = new List<Vector3>();
 
-            float platformStartChance = 0.05f; //should "chance" be "likelihood"?
+            float platformStartChance = 0.2f; //should "chance" be "likelihood"?
             float platformContinueChance = 0.50f;
             bool platformOnGoing = false;
 
             System.Random random = new System.Random();
 
-            for (int i = 0; i < positions.Length; i += 7)
+            for (int i = 0; i < positions.Length; i += 5)
             {
                 float rand = (float)random.Next(101) / 100;
                 if (!platformOnGoing)
@@ -132,19 +132,53 @@ namespace Assets
             }
         }
 
-        private void createPlatforms(Vector3[] positions, int minimumHeight, Texture2D tex)
+        private void createPlatforms(Vector3[] positions,  float minimumHeight, Texture2D tex)
         {
             Platform platform; 
 
             System.Random random = new System.Random();
             for(int i = 0; i < positions.Length; i++)
             {
-                float height = random.Next(101) / 80; //in range of 0 to 5
+                float height = random.Next(101) / 100; //in range of 0 to 5
                 Vector3 pos = new Vector3(positions[i].x, positions[i].y + minimumHeight + height, positions[i].z);
 
                 platform = new Platform(pos, tex);
                 platforms.Add(platform);
             }
+
+            int platformBubblePyramidSize = 3;
+            for (int i = 0; i < platforms.Count; i++)
+            {
+                createPlatformBubbles(platforms[i].getPosition(), platformBubblePyramidSize, textures["bubbleTexture"]);
+            }
+        }
+
+
+        private void createPlatformBubbles(Vector3 position, int width, Texture2D tex)
+        {
+            position = new Vector3(position.x - 2, position.y + 1, position.z);
+            for (int j = 0; j < width; j++)
+            {
+                for (int i = width - j; i > 0; i--)
+                {
+                    //Bubble bubble = new Bubble(
+                    Vector2 pos = new Vector2(i + j/2f + position.x, j + position.y);
+                    Bubble bubble = new Bubble(pos, tex, bubbleAverageColor);
+                    bubbles.Add(bubble);
+                      //
+                     ///
+                    /////
+                }
+            }
+            //for (int y = width; y > 0; y--)
+            //{
+            //    for (int x = width; x > 0; x--)
+            //    {
+                    
+            //    }
+            //}
+
+
         }
 	}
 }

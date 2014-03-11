@@ -35,5 +35,11 @@ namespace Assets
             //platform.renderer.material.mainTextureScale = new Vector2(0.5f, 1f);
             platform.renderer.material.mainTexture = texture;
         }
+
+        public Vector3 getPosition()
+        {
+            return position;
+        }
+
     }
 }
