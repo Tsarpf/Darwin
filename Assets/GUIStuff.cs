@@ -11,7 +11,7 @@ public class GUIStuff : MonoBehaviour {
 
     void OnGUI()
     {
-        int bubblePoints = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPoints>().getBubblePoints();
+        int bubblePoints = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().getBubblePoints();
         GUI.Box(new Rect(10, 10, 100, 90), "Points");
         GUI.Box(new Rect(20, 40, 80, 20), bubblePoints.ToString());
     }

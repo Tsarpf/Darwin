@@ -5,23 +5,23 @@ public class movescript : MonoBehaviour {
 
 	// Use this for initialization
     Quaternion q;
-    Vector3 eulerAngles;
+    //Vector3 eulerAngles;
 
     bool playerOnGround = false;
     bool playerJumping = false;
     float jumpStartTime = 0;
-    float maxJumpTime = 5f;
-    float jumpSpeed = 5f;
+    PlayerStats stats;
 
 	void Start () {
+        stats = gameObject.GetComponent<PlayerStats>();
         q = transform.rotation;
-        eulerAngles = transform.eulerAngles;
+        //eulerAngles = transform.eulerAngles;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
-
+        float jumpSpeed = stats.getJumpSpeed();
+        float maxJumpTime = stats.getMaxJumpTime();
 
         if (playerJumping)
         {
@@ -30,7 +30,9 @@ public class movescript : MonoBehaviour {
                 float currentTime = Time.time;
                 if (currentTime < jumpStartTime + maxJumpTime)
                 {
+                    
                     rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpSpeed);
+                    //rigidbody2D.AddForce(new Vector2(0, jumpSpeed));
                 }
                 else
                 {
@@ -43,7 +45,16 @@ public class movescript : MonoBehaviour {
         {
             playerJumping = true;
             jumpStartTime = Time.time;
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpSpeed);
+            //rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpSpeed
+            if (rigidbody2D.velocity.y > 0)
+            {
+                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y + 3f);
+            }
+            else
+            {
+                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpSpeed);
+            }
+            //rigidbody2D.AddForce(new Vector2(0, jumpSpeed));
             playerOnGround = false;
         }
 

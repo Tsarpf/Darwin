@@ -63,7 +63,7 @@ namespace Assets
             //ps.gravityModifier = 1f;
             //ps.startColor = 
             //ps.particleEmitter.Emit(10);
-            //GameObject.Destroy(bubble, 0.5f);
+            GameObject.Destroy(bubble, 1);
         }
 
 	}
