@@ -14,8 +14,12 @@ public class PlayerStats : MonoBehaviour {
     int streakLength;
     float streakLastBubbleTime;
 
+<<<<<<< HEAD
     float streakMaxInterval = 1;
 
+=======
+    float streakMaxInterval = 3;
+>>>>>>> 0f8ecc1f0327df2ea171f0f513e296573d5076a9
     
 	void Start () {
         bubblePoints = 0;
@@ -51,11 +55,15 @@ public class PlayerStats : MonoBehaviour {
 
     private void poppedBubble()
     {
+<<<<<<< HEAD
 		int points = 1;
+=======
+>>>>>>> 0f8ecc1f0327df2ea171f0f513e296573d5076a9
 
         if (streaking)
         {
             streakLength++;
+<<<<<<< HEAD
         }
         else
         {
@@ -81,6 +89,23 @@ public class PlayerStats : MonoBehaviour {
 
 
         //Todo: add powerups/speedups/etc here. ie: make changes to the player speed stuff
+=======
+            streakLastBubbleTime = Time.time;
+        }
+        else
+        {
+            bubblePoints++;
+            streaking = true;
+            streakLength = 1;
+            streakLastBubbleTime = Time.time;
+        }
+
+        if (streakLength >= 5)
+        {
+            //moar points
+        }
+
+>>>>>>> 0f8ecc1f0327df2ea171f0f513e296573d5076a9
         if (bubblePoints >= 50)
         {
 
@@ -98,6 +123,7 @@ public class PlayerStats : MonoBehaviour {
 
         }
 
+<<<<<<< HEAD
 		bubblePoints += points;
         streakLastBubbleTime = Time.time;
     }
@@ -116,6 +142,10 @@ public class PlayerStats : MonoBehaviour {
 	{
 		return streakLength;
 	}
+=======
+
+    }
+>>>>>>> 0f8ecc1f0327df2ea171f0f513e296573d5076a9
 
     public float getJumpSpeed()
     {
