@@ -99,14 +99,12 @@
      <Compile Include="Assets\PlatformCollider.cs" />
      <Compile Include="Assets\PlayerStats.cs" />
      <Compile Include="Assets\TEst.cs" />
+     <Compile Include="Assets\TextStuff.cs" />
      <Compile Include="Assets\camerascript.cs" />
      <Compile Include="Assets\movescript.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
- </Reference>
- <Reference Include="LibNoise">
- <HintPath>Assets\LibNoiseDotNet\LibNoise\LibNoise\bin\Release\LibNoise.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -16,6 +16,8 @@ public class PlayerStats : MonoBehaviour {
 
     float streakMaxInterval = 1;
 
+    TextStuff textStuff;
+
 
     
 	void Start () {
@@ -27,6 +29,7 @@ public class PlayerStats : MonoBehaviour {
         streakLastBubbleTime = 0;
 		playerSpeedForce = 10f;
    		playerSpeed = 3f;
+        textStuff = GameObject.FindGameObjectWithTag("WorldGameObject").GetComponent<TextStuff>();
 	}
 
 	void Update () {
@@ -64,6 +67,11 @@ public class PlayerStats : MonoBehaviour {
         {
             streaking = true;
             streakLength = 1;
+        }
+
+        if (streakLength >= 5)
+        {
+            textStuff.showTextMoving("STREAKING!");
         }
 
 		if (streakLength >= 5 && streakLength < 10)
