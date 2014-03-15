@@ -91,6 +91,7 @@ public class PlayerStats : MonoBehaviour {
 		}
 
 		bubblePoints += points;
+        textStuff.showTextStatic(points.ToString(), new Vector2(transform.position.x, transform.position.y));
 
         //Todo: add powerups/speedups/etc here. ie: make changes to the player speed stuff
 		if (bubblePoints >= 100)

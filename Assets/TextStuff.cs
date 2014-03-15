@@ -29,6 +29,13 @@ public class TextStuff : MonoBehaviour {
         
     }
 
+    public void showTextStatic(string text, Vector2 position)
+    {
+        GameObject textGameObject = createNewText(text);
+        textGameObject.transform.position = position;
+        StartCoroutine(Fade(textGameObject));
+    }
+
     private GameObject createNewText(string text, string font = "Arial")
     {
         /*
@@ -92,8 +99,4 @@ wallTxt.GetComponent(TextMesh).font = myFont;
     }
 
 
-    public void showTextStatic(string text)
-    {
-
-    }
 }
