@@ -16,6 +16,7 @@ public class TEst : MonoBehaviour {
         textures["floorTexture"] = "Grass0133_9_S";
 		textures["bubbleTexture"] = "Fruit0034_L";
         textures["platformTexture"] = "OrnamentBorder0228_2_S";
+		textures["leaf"] = "grass_project/single";
 
 		Assets.Level level = new Assets.Level(textures, 500);
 	}

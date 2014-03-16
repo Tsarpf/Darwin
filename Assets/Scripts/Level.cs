@@ -41,6 +41,28 @@ namespace Assets
             List<Vector3> platformPositions = generatePlatformPositions(scaleMultiplier);
             float platformMinimumHeight = 2.5f;
             createPlatforms(platformPositions.ToArray(), platformMinimumHeight, textures["platformTexture"]);
+
+			createGrass(floor.getUpperVertices()[0]);
+		}
+
+        private void createGrass(Vector3 position)
+		{
+			Assets.Scripts.GrassTexture grass = new Assets.Scripts.GrassTexture(textures["leaf"], 0.1f, 0.9f, 2f, 2f);
+			GameObject go = new GameObject("grass");
+			go.transform.position = position;
+            //go.AddComponent<
+			//go.AddComponent("MeshFilter");
+			//go.AddComponent("MeshRenderer");
+			go.AddComponent<SpriteRenderer>();
+			var spriteRenderer = go.GetComponent<SpriteRenderer>();
+            Texture2D asdf = grass.getTexture();
+            Rect rect = new Rect(0,0,asdf.width,asdf.height);
+			Sprite sprite = Sprite.Create(grass.getTexture(), rect, new Vector2(0, 0));
+
+            spriteRenderer.sprite = sprite;
+
+			spriteRenderer.material = new Material(Shader.Find("Sprites/Diffuse"));
+
 		}
 
         private Color32 averageColorFromTexture(Texture2D tex)
