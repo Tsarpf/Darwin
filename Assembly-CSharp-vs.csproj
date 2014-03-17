@@ -94,6 +94,7 @@
      <Compile Include="Assets\Scripts\BubbleCollider.cs" />
      <Compile Include="Assets\Scripts\Floor.cs" />
      <Compile Include="Assets\Scripts\GUIStuff.cs" />
+     <Compile Include="Assets\Scripts\GrassSceneTest.cs" />
      <Compile Include="Assets\Scripts\GrassTexture.cs" />
      <Compile Include="Assets\Scripts\Level.cs" />
      <Compile Include="Assets\Scripts\Platform.cs" />

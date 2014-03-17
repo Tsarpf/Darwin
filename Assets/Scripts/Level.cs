@@ -49,7 +49,8 @@ namespace Assets
 		{
 			Assets.Scripts.GrassTexture grass = new Assets.Scripts.GrassTexture(textures["leaf"], 0.1f, 0.9f, 2f, 2f);
 			GameObject go = new GameObject("grass");
-			go.transform.position = position;
+			go.transform.position = new Vector3(-5,0,0);
+			//go.transform.position = position;
             //go.AddComponent<
 			//go.AddComponent("MeshFilter");
 			//go.AddComponent("MeshRenderer");
