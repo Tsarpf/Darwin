@@ -26,20 +26,15 @@ namespace Assets.Scripts
             this.leaf = leaf;
 
             List<Texture2D> layers = new List<Texture2D>();
-            int layerCount = 3;
+            int layerCount = 10;
             for(int i = 0; i < layerCount; i++)
             {
-                Debug.Log("creating layer");
                 layers.Add(createTextureLayer());
             }
 
-                Debug.Log("creating final texture");
             grass = createFinalTexture(layers);
 
-
-            Debug.Log("creating object");
             createObject();
-            grass.Apply();
 		}
 
         private Texture2D createTextureLayer()
@@ -74,18 +69,13 @@ namespace Assets.Scripts
 		        //TODO: rotate using something similar to http://forum.unity3d.com/threads/23904-Rotate-a-texture-with-an-arbitrary-angle?p=159007&viewfull=1#post159007
                 
 
-                //int yMin = singleLeaf.height;
                 int yMin = 0;
                 int yMax = height - singleLeaf.height;
                 int y = random.Next(yMin, yMax + 1);
                 Color32[] colors = singleLeaf.GetPixels32();
-                //grass.SetPixels(x, y, singleLeaf.width, singleLeaf.height, colors);
                 setOnlyAlphaPositivePixels(x, y, singleLeaf.width, singleLeaf.height, colors, layer);
-                layer.Apply();
-                //Debug.Log(string.Format("x: {0} y: {1} blockwidth: {2} blockheight: {3}", x, y, singleLeaf.width, singleLeaf.height));
 			}
 
-            layer.Apply();
 
             return layer;
 
@@ -95,23 +85,10 @@ namespace Assets.Scripts
         {
             Texture2D grass = createNewEmptyTexture(width, height);
 
-            float maxContrastDifference = 0.3f;
+            float maxContrastDifference = 0.4f;
 
             float contrastStep = maxContrastDifference / (float)(layers.Count);
 
-            /*
-            int idx = 0;
-            for (float i = 0; i < maxContrastDifference; i += contrastStep)
-            {
-                Color[] colors = layers[idx].GetPixels();
-
-                if(i != 0) decreaseContrast(layers.Count i, colors);
-
-                setOnlyAlphaPositivePixels(0, 0, width, height, colors, grass);
-
-                idx++;
-            }
-            */
             float currentContrastChange = maxContrastDifference;
             for(int i = 0; i < layers.Count; i++)
             {
@@ -120,11 +97,11 @@ namespace Assets.Scripts
                 colors = decreaseContrast(currentContrastChange, colors);
 
                 setOnlyAlphaPositivePixels(0,0, width, height, colors, grass);
-                grass.Apply();
 
                 currentContrastChange -= contrastStep;
             }
 
+            grass.Apply();
             return grass;
         }
 
@@ -174,18 +151,8 @@ namespace Assets.Scripts
 
         private Texture2D resizeLeaf(Texture2D singleLeaf, float multiplier)
         {
-            //leaf.Resize((int)(leaf.width * multiplier), (int)(leaf.height * multiplier));
-            //leaf.Apply();
-            /*
-            	var newTex = Instantiate (tex);
-	renderer.material.mainTexture = newTex;
-	TextureScale.Bilinear (newTex, tex.width*2, tex.height*2);
-            */
-
             Texture2D newTex = Texture2D.Instantiate(singleLeaf) as Texture2D;
             
-
-
             TextureScale.Bilinear(newTex, (int)(singleLeaf.width * multiplier), (int)(singleLeaf.height * multiplier));
             return newTex;
         }
@@ -194,10 +161,6 @@ namespace Assets.Scripts
         {
             go = new GameObject("Grass");
             go.transform.position = new Vector3(-5, 0, 0);
-            //go.transform.position = position;
-            //go.AddComponent<
-            //go.AddComponent("MeshFilter");
-            //go.AddComponent("MeshRenderer");
             go.AddComponent<SpriteRenderer>();
             var spriteRenderer = go.GetComponent<SpriteRenderer>();
             Rect rect = new Rect(0, 0, grass.width, grass.height);
@@ -233,7 +196,6 @@ namespace Assets.Scripts
 			}
 
 			newTexture.SetPixels32(newPixels);
-            //newTexture.Apply();
 
 			return newTexture;
 		}
@@ -252,7 +214,6 @@ namespace Assets.Scripts
 			}
 
 			newTexture.SetPixels32(newPixels);
-            //newTexture.Apply();
 
 			return newTexture;
 		}

@@ -48,7 +48,7 @@ namespace Assets
         private void createGrass(Vector3 position)
 		{
 
-            Assets.Scripts.GrassTexture grass = new Assets.Scripts.GrassTexture(textures["leaf"], 50, 0.9f, 700, 1000, new Color32(117, 200, 92, 255));
+            Assets.Scripts.GrassTexture grass = new Assets.Scripts.GrassTexture(textures["leaf"], 50, 0.85f, 700, 2000, new Color32(117, 200, 92, 255));
 
 		}
 
