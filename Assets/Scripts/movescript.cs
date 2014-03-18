@@ -70,6 +70,11 @@ public class movescript : MonoBehaviour {
 		{
 			//transform.rigidbody.AddForce(new Vector3(10, 0, 0));
 		}
+
+        if (rigidbody2D.velocity.x != 5f)
+        {
+            rigidbody2D.velocity = new Vector2(7.5f, rigidbody2D.velocity.y);
+        }
 	}
 
     void OnCollisionExit2D(Collision2D collision)

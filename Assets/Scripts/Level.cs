@@ -12,7 +12,7 @@ namespace Assets
 		Floor floor;
 		Dictionary<string, Texture2D> textures;
         Color32 bubbleAverageColor;
-		List<Bubble> bubbles;
+		List<Bubble> bubbles;   
         List<Platform> platforms;
 
 		public Level(Dictionary<string, string> textureLocations, int mapLength)
@@ -42,8 +42,8 @@ namespace Assets
             float platformMinimumHeight = 2.5f;
             createPlatforms(platformPositions.ToArray(), platformMinimumHeight, textures["platformTexture"]);
 
-			createGrass(floor.getUpperVertices()[0]);
-		}
+            //createGrass(floor.getUpperVertices()[0]);
+		}   
 
         private void createGrass(Vector3 position)
 		{
