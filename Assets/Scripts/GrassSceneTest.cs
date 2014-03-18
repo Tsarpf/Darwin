@@ -15,11 +15,12 @@ public class GrassSceneTest : MonoBehaviour {
         textures["floorTexture"] = "Grass0133_9_S";
 		textures["bubbleTexture"] = "Fruit0034_L";
         textures["platformTexture"] = "OrnamentBorder0228_2_S";
-		textures["leaf"] = "grass_project/single_new";
+        textures["leaf"] = "grass_project/single_black_and_white";
 
 		Assets.Level level = new Assets.Level(textures, 10);
 	}
+
 	void Update () {
 	
 	}
-}
+}   

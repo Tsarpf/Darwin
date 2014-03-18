@@ -47,22 +47,8 @@ namespace Assets
 
         private void createGrass(Vector3 position)
 		{
-			Assets.Scripts.GrassTexture grass = new Assets.Scripts.GrassTexture(textures["leaf"], 0.1f, 0.9f, 2f, 2f);
-			GameObject go = new GameObject("grass");
-			go.transform.position = new Vector3(-5,0,0);
-			//go.transform.position = position;
-            //go.AddComponent<
-			//go.AddComponent("MeshFilter");
-			//go.AddComponent("MeshRenderer");
-			go.AddComponent<SpriteRenderer>();
-			var spriteRenderer = go.GetComponent<SpriteRenderer>();
-            Texture2D asdf = grass.getTexture();
-            Rect rect = new Rect(0,0,asdf.width,asdf.height);
-			Sprite sprite = Sprite.Create(grass.getTexture(), rect, new Vector2(0, 0));
 
-            spriteRenderer.sprite = sprite;
-
-			spriteRenderer.material = new Material(Shader.Find("Sprites/Diffuse"));
+            Assets.Scripts.GrassTexture grass = new Assets.Scripts.GrassTexture(textures["leaf"], 50, 0.9f, 700, 1000, new Color32(117, 200, 92, 255));
 
 		}
 

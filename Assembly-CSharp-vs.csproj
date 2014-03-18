@@ -102,6 +102,7 @@
      <Compile Include="Assets\Scripts\PlayerStats.cs" />
      <Compile Include="Assets\Scripts\TEst.cs" />
      <Compile Include="Assets\Scripts\TextStuff.cs" />
+     <Compile Include="Assets\Scripts\TextureScale.cs" />
      <Compile Include="Assets\Scripts\camerascript.cs" />
      <Compile Include="Assets\Scripts\movescript.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
